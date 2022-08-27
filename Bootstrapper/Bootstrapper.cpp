@@ -25,7 +25,7 @@ void Bootstrapper::parse_arguments(int argc, char const *argv[]) {
     //Instante parser
     argparse::ArgumentParser program("Colyseus Proxy", "1.0");
     //Add arguments
-    program.add_argument("-i", "--ip").help("IP to bind to (default 0.0.0.0)");
+    program.add_argument("-i", "--ip").help("IP to bind to (default 0.0.0.0)").scan<'u', uint16_t>();
     program.add_argument("-p", "--http-port").help("HTTP listen port");
     program.add_argument("-s", "--https-port").help("HTTPS listen port");
     program.add_argument("-c", "--ssl-cert").help("HTTPS SSL Certificate");
