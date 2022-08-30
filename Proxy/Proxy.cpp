@@ -1,6 +1,6 @@
 #include "Proxy.hpp"
 
-Proxy::Proxy(const Settings &settings) : settings(settings)
+Proxy::Proxy(const Settings &settings) : settings(settings), serverPool(settings)
 {	
 	start_http();
 	start_https();
@@ -14,6 +14,8 @@ void Proxy::start_http() {
 			spdlog::error("HTTP server could not bind to {}:{}", settings.ip, settings.http_port);
 		}
 	});
+
+	// server.get("*", [])
 }
 
 void Proxy::start_https() {

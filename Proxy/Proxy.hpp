@@ -13,6 +13,7 @@
 
 // Internal headers
 #include "Settings/Settings.hpp"
+#include "ServerPool/ServerPool.hpp"
 
 class Proxy
 {
@@ -29,6 +30,7 @@ private:
     uWS::App server;
     uWS::SSLApp sslServer;
     const Settings &settings;
+    ServerPool serverPool;
 };
 
 

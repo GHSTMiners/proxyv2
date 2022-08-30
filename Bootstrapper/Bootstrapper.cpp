@@ -1,7 +1,12 @@
 #include "Bootstrapper.hpp"
 
+void Bootstrapper::init_loop() {
+    uWS::Loop::get(uv_default_loop());
+}
+
 void Bootstrapper::bootstrap(int argc, char const *argv[]) {
     spdlog::debug("Bootstrapping Colyseus proxy");
+    init_loop();
     process_environment();
     parse_arguments(argc, argv);
     start_server();
