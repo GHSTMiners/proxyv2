@@ -5,6 +5,7 @@ void Bootstrapper::bootstrap(int argc, char const *argv[]) {
     process_environment();
     parse_arguments(argc, argv);
     print_info();
+    start_server();
 }
 
 void Bootstrapper::process_environment() {
@@ -25,9 +26,9 @@ void Bootstrapper::parse_arguments(int argc, char const *argv[]) {
     //Instante parser
     argparse::ArgumentParser program("Colyseus Proxy", "1.0");
     //Add arguments
-    program.add_argument("-i", "--ip").help("IP to bind to (default 0.0.0.0)").scan<'u', uint16_t>();
-    program.add_argument("-p", "--http-port").help("HTTP listen port");
-    program.add_argument("-s", "--https-port").help("HTTPS listen port");
+    program.add_argument("-i", "--ip").help("IP to bind to (default 0.0.0.0)");
+    program.add_argument("-p", "--http-port").help("HTTP listen port").scan<'u', uint16_t>();
+    program.add_argument("-s", "--https-port").help("HTTPS listen port").scan<'u', uint16_t>();
     program.add_argument("-c", "--ssl-cert").help("HTTPS SSL Certificate");
     program.add_argument("-k", "--ssl-key").help("HTTPS SSL Key");
     program.add_argument("-r", "--redis-url").help("URL to connect to redis database");
@@ -37,6 +38,10 @@ void Bootstrapper::parse_arguments(int argc, char const *argv[]) {
     // Run parser
     try {
         program.parse_args(argc, argv);
+        if(program.present<std::string>("i")) settings.ip = program.get<std::string>("i");
+        if(program.present<uint16_t>("p")) settings.http_port = program.get<uint16_t>("p");
+        if(program.present<uint16_t>("s")) settings.https_port = program.get<uint16_t>("s");
+
     }
     catch (const std::runtime_error& err) {
         std::cerr << err.what() << std::endl;
@@ -48,4 +53,8 @@ void Bootstrapper::parse_arguments(int argc, char const *argv[]) {
 void Bootstrapper::print_info() {
     spdlog::info("Will attempt to listen on {}:{} (HTTP)", settings.ip, settings.http_port);
     spdlog::info("Will attempt to listen on {}:{} (HTTPS)", settings.ip, settings.https_port);
+}
+
+void Bootstrapper::start_server() {
+    Proxy proxy(settings);
 }

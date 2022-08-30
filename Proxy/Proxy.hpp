@@ -3,19 +3,28 @@
 #include <functional>
 
 // uWebSockets
-#include "App.h"
+#include <App.h>
 
 // SPDlog
 #include <spdlog/spdlog.h>
 
+// Internal headers
+#include "Settings/Settings.hpp"
+
 class Proxy
 {
 public:
-    Proxy();
+    Proxy(const Settings &settings);
     ~Proxy();
+
+protected:
+    void start_http();
+    void start_https();
 
     
 private:
+    uWS::App server;
+    uWS::SSLApp sslServer;
 };
 
 

@@ -1,3 +1,6 @@
+#ifndef SETTINGS_H
+#define SETTINGS_H
+
 #include <string>
 #include <stdint.h>
 
@@ -12,3 +15,5 @@ public:
     std::string ssl_key;
     std::string redis_url;
 };
+
+#endif
