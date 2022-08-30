@@ -4,7 +4,6 @@ void Bootstrapper::bootstrap(int argc, char const *argv[]) {
     spdlog::debug("Bootstrapping Colyseus proxy");
     process_environment();
     parse_arguments(argc, argv);
-    print_info();
     start_server();
 }
 

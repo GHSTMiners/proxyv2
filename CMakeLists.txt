@@ -3,9 +3,10 @@ cmake_minimum_required(VERSION 3.10)
 # Set the project name
 project(proxy)
 
-# Find libraries
-find_package(spdlog REQUIRED)
+# Find libraries)
 find_package(fmt REQUIRED)
+find_package(spdlog REQUIRED)
+find_package(Boost REQUIRED COMPONENTS filesystem)
 
 # fetch latest argparse
 include(FetchContent)
@@ -29,4 +30,4 @@ add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Link include directories, libraries, defines etc.
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC argparse spdlog fmt uWebSockets)
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC argparse spdlog fmt uWebSockets ${Boost_LIBRARIES})

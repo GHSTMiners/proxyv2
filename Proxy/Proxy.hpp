@@ -8,6 +8,9 @@
 // SPDlog
 #include <spdlog/spdlog.h>
 
+// Boost
+#include <boost/filesystem.hpp>
+
 // Internal headers
 #include "Settings/Settings.hpp"
 
@@ -25,6 +28,7 @@ protected:
 private:
     uWS::App server;
     uWS::SSLApp sslServer;
+    const Settings &settings;
 };
 
 
