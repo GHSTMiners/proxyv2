@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "Bootstrapper/Bootstrapper.hpp"
 
 int main(int argc, char const *argv[])
