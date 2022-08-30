@@ -9,9 +9,9 @@
 #include <spdlog/spdlog.h>
 
 // Hiredis
-#include <hiredis/async.h>
-#include <hiredis/hiredis.h>
-#include <hiredis/adapters/libuv.h>
+#include <async.h>
+#include <hiredis.h>
+#include <adapters/libuv.h>
 
 // Internal headers
 #include "Settings/Settings.hpp"

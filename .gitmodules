@@ -7,3 +7,6 @@
 [submodule "Libraries/uWebSockets/repo"]
 	path = Libraries/uWebSockets/repo
 	url = git@github.com:uNetworking/uWebSockets.git
+[submodule "Libraries/hiredis"]
+	path = Libraries/hiredis
+	url = https://github.com/redis/hiredis

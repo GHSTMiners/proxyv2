@@ -17,6 +17,7 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(argparse)
 
+add_subdirectory(Libraries/hiredis)
 add_subdirectory(Libraries/uSockets)
 add_subdirectory(Libraries/uWebSockets)
 
@@ -30,4 +31,4 @@ add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
 target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_SOURCE_DIR})
 
 # Link include directories, libraries, defines etc.
-target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC argparse spdlog fmt uWebSockets uSockets ${Boost_LIBRARIES} hiredis)
+target_link_libraries(${CMAKE_PROJECT_NAME} PUBLIC argparse spdlog fmt uWebSockets uSockets ${Boost_LIBRARIES} hiredis_static)
