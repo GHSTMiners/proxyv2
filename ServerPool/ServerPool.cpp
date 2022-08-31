@@ -59,12 +59,12 @@ void ServerPool::subscriptionCallback(redisAsyncContext *c, void *r, void *privd
                 if(operation == "add") {
                     if(nodes.count(serverHandle->processId) == 0) {
                         nodes.insert_or_assign(serverHandle->processId, serverHandle);
-                        spdlog::info("Server with processId {} was added to the server pool", serverHandle->processId);
+                        spdlog::info("Server with processId {} was added to the server pool (pool size {})", serverHandle->processId, nodes.size());
                     }
                 } else if(operation == "remove") {
                     if(nodes.count(serverHandle->processId) > 0) {
                         nodes.erase(serverHandle->processId);
-                        spdlog::info("Server with processId {} was removed from the server pool", serverHandle->processId);
+                        spdlog::info("Server with processId {} was removed from the server pool (pool size {})", serverHandle->processId, nodes.size());
                     }
                 }
             } else {
