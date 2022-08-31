@@ -14,6 +14,7 @@
 #include <adapters/libuv.h>
 
 // Internal headers
+#include "ServerHandle.hpp"
 #include "Settings/Settings.hpp"
 
 class ServerPool
@@ -23,12 +24,15 @@ public:
     ~ServerPool();
 
 protected:
-    static void getCallback(redisAsyncContext *c, void *r, void *privdata);
     static void connectCallback(const redisAsyncContext *c, int status);
     static void disconnectCallback(const redisAsyncContext *c, int status);
+    static void updateCallback(redisAsyncContext *c, void *r, void *privdata);
+    static void subscriptionCallback(redisAsyncContext *c, void *r, void *privdata);
 
 private:
     const Settings &settings;
-    redisAsyncContext *redisContext;
+    static redisReader *reader;
+    static redisAsyncContext *redisContext;
+    static std::map<std::string, pServerHandle> nodes;
 };
 

@@ -76,6 +76,8 @@
         "source_location": "cpp",
         "numbers": "cpp",
         "semaphore": "cpp",
-        "stop_token": "cpp"
+        "stop_token": "cpp",
+        "forward_list": "cpp",
+        "netfwd": "cpp"
     }
 }

@@ -22,7 +22,7 @@ add_subdirectory(Libraries/uSockets)
 add_subdirectory(Libraries/uWebSockets)
 
 # Add source files
-set(SOURCE_FILES main.cpp Bootstrapper/Bootstrapper.cpp Settings/Settings.cpp Proxy/Proxy.cpp ServerPool/ServerPool.cpp)
+set(SOURCE_FILES main.cpp Bootstrapper/Bootstrapper.cpp Settings/Settings.cpp Proxy/Proxy.cpp ServerPool/ServerPool.cpp ServerPool/ServerHandle.cpp)
 
 # Create the executable
 add_executable(${CMAKE_PROJECT_NAME} ${SOURCE_FILES})
